@@ -6,10 +6,10 @@ from skfuzzy import control as ctrl
 class StuntingAI:
     def __init__(self):
         print("Sedang memuat data WHO...")
-        self.wfa_boys = pd.read_csv('wfa_boys_0-to-5-years_zscores.csv', sep=';', decimal=',')
-        self.wfa_girls = pd.read_csv('wfa_girls_0-to-5-years_zscores.csv', sep=';', decimal=',')
-        self.lhfa_boys = pd.read_csv('lhfa_boys_0-to-5-years_zscores.csv', sep=';', decimal=',')
-        self.lhfa_girls = pd.read_csv('lhfa_girls_0-to-5-years_zscores.csv', sep=';', decimal=',')
+        self.wfa_boys = pd.read_csv('dataset/wfa_boys_0-to-5-years_zscores.csv', sep=';', decimal=',')
+        self.wfa_girls = pd.read_csv('dataset/wfa_girls_0-to-5-years_zscores.csv', sep=';', decimal=',')
+        self.lhfa_boys = pd.read_csv('dataset/lhfa_boys_0-to-5-years_zscores.csv', sep=';', decimal=',')
+        self.lhfa_girls = pd.read_csv('dataset/lhfa_girls_0-to-5-years_zscores.csv', sep=';', decimal=',')
         
         if 'c' in self.lhfa_boys.columns:
             self.lhfa_boys.rename(columns={'c': 'Month'}, inplace=True)
