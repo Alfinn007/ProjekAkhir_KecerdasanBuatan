@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Deteksi Stunting AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .card { box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 15px; }
+        .header-title { color: #2c3e50; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="text-center mb-4">
+                <h2 class="header-title">Sistem Deteksi Stunting (Fuzzy Logic)</h2>
+                <p class="text-muted">Masukkan data antropometri anak di bawah ini</p>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body p-4">
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label class="form-label">Nama Anak</label>
+                            <input type="text" name="nama" class="form-control" required placeholder="Contoh: Budi">
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Jenis Kelamin</label>
+                                <select name="gender" class="form-select">
+                                    <option value="laki-laki">Laki-Laki</option>
+                                    <option value="perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Satuan Umur</label>
+                                <select name="tipe_umur" class="form-select">
+                                    <option value="bulan">Bulan</option>
+                                    <option value="tahun">Tahun</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Nilai Umur</label>
+                                <input type="number" step="0.1" name="umur" class="form-control" required placeholder="ex: 12">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Tinggi Badan (cm)</label>
+                                <input type="number" step="0.1" name="tinggi" class="form-control" required placeholder="ex: 80.5">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Berat Badan (kg)</label>
+                                <input type="number" step="0.1" name="berat" class="form-control" required placeholder="ex: 10.2">
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">🔍 Analisa Sekarang</button>
+                            <a href="/database" class="btn btn-outline-secondary">📂 Lihat Riwayat Data</a>
+                        </div>
+                    </form>
+                    
+                    {% if error %}
+                    <div class="alert alert-danger mt-3">
+                        {{ error }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if hasil %}
+            <div class="card border-{{ hasil.warna }} shadow">
+                <div class="card-header bg-{{ hasil.warna }} text-white text-center">
+                    <h4 class="mb-0 fw-bold">HASIL: {{ hasil.Kesimpulan }}</h4>
+                </div>
+                <div class="card-body">
+                    
+                    <h5 class="card-title text-center mb-3">Data Pasien</h5>
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered table-sm">
+                            <tbody>
+                                <tr>
+                                    <th width="35%" class="bg-light">Nama Anak</th>
+                                    <td>{{ hasil.nama }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Jenis Kelamin</th>
+                                    <td class="text-capitalize">{{ hasil.JK }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Umur</th>
+                                    <td class="text-capitalize">{{ hasil.Umur_Display }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-light">Tinggi / Berat</th>
+                                    <td>{{ hasil.Tinggi_cm }} cm / {{ hasil.Berat_kg }} kg</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <hr>
+
+                    <h5 class="card-title text-center mt-3">Statistik Pertumbuhan</h5>
+                    <div class="row text-center mb-3 g-2">
+                        <div class="col-4">
+                            <div class="p-2 border rounded bg-light h-100 d-flex flex-column justify-content-center">
+                                <small class="text-muted" style="font-size: 0.8rem;">Z-Score TB/U</small>
+                                <span class="fw-bold text-primary">{{ hasil.Z_Score_TB }} SD</span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-2 border rounded bg-light h-100 d-flex flex-column justify-content-center">
+                                <small class="text-muted" style="font-size: 0.8rem;">Z-Score BB/U</small>
+                                <span class="fw-bold text-primary">{{ hasil.Z_Score_BB }} SD</span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-2 border rounded bg-light h-100 d-flex flex-column justify-content-center">
+                                <small class="text-muted" style="font-size: 0.8rem;">Skor Fuzzy</small>
+                                <span class="fw-bold text-dark">{{ hasil.Skor_Fuzzy }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-light border mt-3">
+                        <h6 class="fw-bold">📋 Rekomendasi / Saran:</h6>
+                        <ul class="mb-0 ps-3">
+                            {% for saran in hasil.saran %}
+                                <li class="mb-1">{{ saran }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-footer text-muted text-center" style="font-size: 0.85rem;">
+                    Pemeriksaan: {{ hasil.Tanggal }}
+                </div>
+            </div>
+            {% endif %}
+
+</body>
+</html>

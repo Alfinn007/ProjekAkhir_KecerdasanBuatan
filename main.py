@@ -72,7 +72,7 @@ class StuntingAI:
         return ((berat / M) ** L - 1) / (S * L)
 
     def simpan_data(self, data_dict):
-        nama_file = 'laporan_hasil.csv'
+        nama_file = 'dataset/laporan_hasil.csv'
         df_baru = pd.DataFrame([data_dict])
         
         if not os.path.isfile(nama_file):
@@ -97,9 +97,11 @@ class StuntingAI:
         except:
             skor_akhir = 0
         
-        kesimpulan = ''
+        status_text = ''
+        warna_css = ''
+        saran_list = []
         sarantxt = ''
-        saran = []
+        
         if skor_akhir < 45:
             kesimpulan = 'Severely Stunted (Stunting Berat)'
             saran = [
@@ -124,6 +126,7 @@ class StuntingAI:
                 "Pastikan imunisasi dasar dan lanjutan lengkap.",
                 "Jaga kebersihan diri dan lingkungan untuk mencegah infeksi."
             ]
+            
         for i, poin in enumerate(saran):
             if i == 0:
                 sarantxt += f'- {poin}\n'
@@ -148,11 +151,14 @@ class StuntingAI:
             'Z_Score_TB': round(z_tinggi, 2),
             'Z_Score_BB': round(z_berat, 2),
             'Skor_Fuzzy': round(skor_akhir, 2),
-            'Kesimpulan': kesimpulan
+            'Kesimpulan': kesimpulan,
+            'status': status_text,
+            'warna': warna_css,    
+            'saran': saran_list
         }
         
         self.simpan_data(data_hasil)
-        return skor_akhir
+        return data_hasil
     
 def input_user():
     print("\n==============================================")
