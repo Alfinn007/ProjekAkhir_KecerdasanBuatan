@@ -1,0 +1,26 @@
+Tanggal_Periksa,nama,JK,Umur_Bulan,Tinggi_cm,Berat_kg,Z_Score_TB,Z_Score_BB,Skor_Fuzzy,Kesimpulan
+2025-12-01 11:45:50,Ahmad,laki-laki,24.0,90.0,16.0,0.83,2.4,0,"Severely Stunted (Stunting Berat)
+- SEGERA rujuk ke Rumah Sakit atau Dokter Spesialis Anak.
+- Pemberian Pangan Olahan untuk Keperluan Medis Khusus (PKMK) di bawah pengawasan dokter.
+- Investigasi penyakit penyerta (seperti TBC, infeksi berulang) yang menghambat pertumbuhan.
+- Pemantauan pertumbuhan secara intensif setiap minggu.
+"
+2025-12-01 11:47:54,a,laki-laki,24.0,80.0,12.0,-2.44,-0.11,60.0,"Stunted (Stunting)
+- Evaluasi pola makan: Wajib tambahkan satu porsi protein hewani (telur, ikan, ayam, daging) setiap kali makan.
+- Berikan Pemberian Makanan Tambahan (PMT) tinggi kalori dan protein.
+- Suplementasi mikronutrien (Taburia, Zinc, Vitamin A) sesuai anjuran Puskesmas/Posyandu.
+- Cek sanitasi lingkungan (air bersih dan jamban) serta perilaku hidup bersih.
+"
+2025-12-01 11:48:31,aa,laki-laki,24.0,80.0,12.0,-2.44,-0.11,60.0,"Stunted (Stunting)
+- Evaluasi pola makan: Wajib tambahkan satu porsi protein hewani (telur, ikan, ayam, daging) setiap kali makan.
+- Berikan Pemberian Makanan Tambahan (PMT) tinggi kalori dan protein.
+- Suplementasi mikronutrien (Taburia, Zinc, Vitamin A) sesuai anjuran Puskesmas/Posyandu.
+- Cek sanitasi lingkungan (air bersih dan jamban) serta perilaku hidup bersih.
+"
+2025-12-01 11:50:17,aa,laki-laki,24.0,80.0,12.0,-2.44,-0.11,60.0,"Stunted (Stunting)
+"
+2025-12-01 11:51:40,kiki,laki-laki,24.0,80.0,15.0,-2.44,1.84,60.0,"Stunted (Stunting)
+"
+2025-12-01 11:57:17,WAHYU,perempuan,24.0,80.0,12.0,-1.88,0.36,88.7,"Normal
+"
+2025-12-01 11:57:45,mio mirza,laki-laki,24.0,80.0,12.0,-2.44,-0.11,60.0,Stunted (Stunting)

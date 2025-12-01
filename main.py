@@ -98,18 +98,44 @@ class StuntingAI:
             skor_akhir = 0
         
         kesimpulan = ''
+        sarantxt = ''
+        saran = []
         if skor_akhir < 45:
-            kesimpulan = 'Severely Stunted (stunting berat), Perlu perhatian medis segera.'
+            kesimpulan = 'Severely Stunted (Stunting Berat)'
+            saran = [
+                "SEGERA rujuk ke Rumah Sakit atau Dokter Spesialis Anak.",
+                "Pemberian Pangan Olahan untuk Keperluan Medis Khusus (PKMK) di bawah pengawasan dokter.",
+                "Investigasi penyakit penyerta (seperti TBC, infeksi berulang) yang menghambat pertumbuhan.",
+                "Pemantauan pertumbuhan secara intensif setiap minggu."
+            ]
         elif skor_akhir < 75:
-            kesimpulan = 'Stunted (stunting), Perlu pemantauan gizi.'
+            kesimpulan = 'Stunted (Stunting)'
+            saran = [
+                "Evaluasi pola makan: Wajib tambahkan satu porsi protein hewani (telur, ikan, ayam, daging) setiap kali makan.",
+                "Berikan Pemberian Makanan Tambahan (PMT) tinggi kalori dan protein.",
+                "Suplementasi mikronutrien (Taburia, Zinc, Vitamin A) sesuai anjuran Puskesmas/Posyandu.",
+                "Cek sanitasi lingkungan (air bersih dan jamban) serta perilaku hidup bersih."
+            ]
         else:
-            kesimpulan = 'Normal, Gizi baik.'
-        
+            kesimpulan = 'Normal'
+            saran = [
+                "Pertahankan pola makan gizi seimbang (Isi Piringku).",
+                "Lanjutkan pemantauan pertumbuhan rutin di Posyandu setiap bulan.",
+                "Pastikan imunisasi dasar dan lanjutan lengkap.",
+                "Jaga kebersihan diri dan lingkungan untuk mencegah infeksi."
+            ]
+        for i, poin in enumerate(saran):
+            if i == 0:
+                sarantxt += f'- {poin}\n'
+            else:
+                sarantxt += f'{" "*15}- {poin}\n'
+
         print(f"--- Hasil Analisa: {nama} ---")
         print(f"Z-Score TB/U : {z_tinggi:.2f} SD")
         print(f"Z-Score BB/U : {z_berat:.2f} SD")
         print(f"Skor Fuzzy   : {skor_akhir:.2f}/100")
         print(f"Status       : {kesimpulan}")
+        print(f"Saran        : {sarantxt}")
         print("-------------------------------\n")
         
         data_hasil = {
